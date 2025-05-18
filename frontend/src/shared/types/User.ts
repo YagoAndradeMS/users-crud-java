@@ -4,5 +4,5 @@ export interface User {
   email: string;
   senha: string;
   cidade?: string;
-  idade?: number;
+  idade?: string;
 }

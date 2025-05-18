@@ -1,5 +1,5 @@
 'use client';
-import { CreateUserModal } from '@/components/modals/createUserModal';
+import { CreateUserModal } from '@/components/modals/createOrEditUserModal';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { FaUsers } from 'react-icons/fa';

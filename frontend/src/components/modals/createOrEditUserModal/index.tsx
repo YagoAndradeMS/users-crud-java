@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import { CreateUserField } from './field';
 import api from '@/shared/services/api';
+import { User } from '@/shared/types/User';
 
 interface CreateUserModalProps {
   onClose: () => void;
+  userToEdit?: User;
 }
 
-export const CreateUserModal = ({ onClose }: CreateUserModalProps) => {
+export const CreateUserModal = ({
+  onClose,
+  userToEdit,
+}: CreateUserModalProps) => {
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -15,6 +20,18 @@ export const CreateUserModal = ({ onClose }: CreateUserModalProps) => {
     idade: '',
     cidade: '',
   });
+
+  useEffect(() => {
+    if (userToEdit) {
+      setFormData({
+        nome: userToEdit.nome || '',
+        email: userToEdit.email || '',
+        senha: userToEdit.senha || '',
+        idade: userToEdit.idade || '',
+        cidade: userToEdit.cidade || '',
+      });
+    }
+  }, [userToEdit]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,11 +41,15 @@ export const CreateUserModal = ({ onClose }: CreateUserModalProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await api.post('/users', { ...formData });
+      if (userToEdit) {
+        await api.put(`/users/${userToEdit.id}`, formData);
+      } else {
+        await api.post('/users', formData);
+      }
+      onClose(); // Fecha após salvar
     } catch (error) {
-      console.log(error);
+      console.error('Erro ao salvar usuário:', error);
     }
-    console.log(formData); // ou envie para a API
   };
 
   return (
@@ -43,7 +64,7 @@ export const CreateUserModal = ({ onClose }: CreateUserModalProps) => {
         </button>
 
         <h2 className='mb-6 text-2xl font-semibold text-zinc-800'>
-          Adicionar novo usuário
+          {userToEdit ? 'Editar usuário' : 'Adicionar novo usuário'}
         </h2>
 
         {/* Formulário */}
@@ -108,7 +129,7 @@ export const CreateUserModal = ({ onClose }: CreateUserModalProps) => {
             className='rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 transition'
             onClick={handleSubmit}
           >
-            Salvar
+            {userToEdit ? 'Atualizar' : 'Salvar'}
           </button>
         </div>
       </div>
