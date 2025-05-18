@@ -10,11 +10,11 @@ interface ActionsProps {
 export const Actions = ({ user }: ActionsProps) => {
   return (
     <div className='flex flex-row justify-end items-center gap-4'>
-      <Icon
+      {/* <Icon
         classname='bg-blue-200 hover:bg-blue-300'
         execute={() => console.log()}
         icon={<FaEye className='text-blue-600 hover:text-blue-700' />}
-      />
+      /> */}
       <Icon
         classname='bg-green-200 hover:bg-green-300'
         execute={() => console.log()}
