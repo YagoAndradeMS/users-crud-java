@@ -18,7 +18,7 @@ export const Input = ({
   setFilter,
 }: InputProps) => {
   return (
-    <div>
+    <div className='flex-1'>
       <h1>{title}</h1>
       <div
         className={`has-[:focus]:border-blue flex items-center h-12 rounded-3xl border-2 border-gray-700`}
