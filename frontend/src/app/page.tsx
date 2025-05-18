@@ -33,7 +33,7 @@ export default function HomePage() {
           setFilterUserId={setFilterUserId}
         />
       </div>
-      <UserTable users={users} />
+      <UserTable users={users} setUsers={setUsers} />
     </main>
   );
 }

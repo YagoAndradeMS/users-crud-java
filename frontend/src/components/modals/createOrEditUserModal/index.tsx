@@ -7,11 +7,13 @@ import { User } from '@/shared/types/User';
 interface CreateUserModalProps {
   onClose: () => void;
   userToEdit?: User;
+  onSuccess?: () => void;
 }
 
 export const CreateUserModal = ({
   onClose,
   userToEdit,
+  onSuccess,
 }: CreateUserModalProps) => {
   const [formData, setFormData] = useState({
     nome: '',
@@ -47,6 +49,7 @@ export const CreateUserModal = ({
         await api.post('/users', formData);
       }
       onClose(); // Fecha após salvar
+      onSuccess?.();
     } catch (error) {
       console.error('Erro ao salvar usuário:', error);
     }

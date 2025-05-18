@@ -11,9 +11,10 @@ import { Actions } from './actions';
 
 interface UserTableProps {
   users: User[];
+  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
-export const UserTable = ({ users }: UserTableProps) => {
+export const UserTable = ({ users, setUsers }: UserTableProps) => {
   return (
     <div className='rounded-xl mt-8 border shadow-2xl p-4'>
       <h2 className='text-2xl font-semibold mb-4'>Lista de Usuários</h2>
@@ -37,7 +38,7 @@ export const UserTable = ({ users }: UserTableProps) => {
               <TableCell>{user.cidade}</TableCell>
               <TableCell>{user.idade}</TableCell>
               <TableCell className='w-[150px]'>
-                <Actions user={user} />
+                <Actions user={user} setUsers={setUsers} />
               </TableCell>
             </TableRow>
           ))}

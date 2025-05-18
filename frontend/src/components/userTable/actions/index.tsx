@@ -2,15 +2,17 @@ import { User } from '@/shared/types/User';
 import { FaTrash } from 'react-icons/fa';
 import { Icon } from './icon';
 import { FaPencil } from 'react-icons/fa6';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { CreateUserModal } from '@/components/modals/createOrEditUserModal';
 import { DeleteUserModal } from '@/components/modals/deleteUserModal';
+import { fetchUsersAgain } from '@/shared/functions/fetchUsers';
 
 interface ActionsProps {
   user: User;
+  setUsers: Dispatch<SetStateAction<User[]>>;
 }
 
-export const Actions = ({ user }: ActionsProps) => {
+export const Actions = ({ user, setUsers }: ActionsProps) => {
   const [openEditModalUser, setOpenEditModalUser] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   return (
@@ -37,6 +39,7 @@ export const Actions = ({ user }: ActionsProps) => {
         <CreateUserModal
           userToEdit={user}
           onClose={() => setOpenEditModalUser(false)}
+          onSuccess={() => fetchUsersAgain(setUsers)}
         />
       )}
 
@@ -44,7 +47,7 @@ export const Actions = ({ user }: ActionsProps) => {
         <DeleteUserModal
           userId={user.id}
           onClose={() => setShowDeleteModal(false)}
-          // onDeleteSuccess={() => fetchUsersAgain()} // Exemplo de callback para atualizar a lista
+          onDeleteSuccess={() => fetchUsersAgain(setUsers)}
         />
       )}
     </div>
