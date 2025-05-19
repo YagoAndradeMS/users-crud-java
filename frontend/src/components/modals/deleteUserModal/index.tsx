@@ -13,13 +13,7 @@ export const DeleteUserModal = ({
   onDeleteSuccess,
 }: DeleteUserModalProps) => {
   const handleDelete = async () => {
-    try {
-      await api.delete(`/users/${userId}`);
-      onDeleteSuccess?.(); // Executa callback se houver
-      onClose();
-    } catch (error) {
-      console.error('Erro ao excluir usuário:', error);
-    }
+    console.log(userId);
   };
 
   return (

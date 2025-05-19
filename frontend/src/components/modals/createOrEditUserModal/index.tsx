@@ -10,7 +10,7 @@ interface CreateUserModalProps {
   onSuccess?: () => void;
 }
 
-export const CreateUserModal = ({
+export const CreateOrEditUserModal = ({
   onClose,
   userToEdit,
   onSuccess,
@@ -42,17 +42,7 @@ export const CreateUserModal = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      if (userToEdit) {
-        await api.put(`/users/${userToEdit.id}`, formData);
-      } else {
-        await api.post('/users', formData);
-      }
-      onClose(); // Fecha após salvar
-      onSuccess?.();
-    } catch (error) {
-      console.error('Erro ao salvar usuário:', error);
-    }
+    console.log(formData);
   };
 
   return (

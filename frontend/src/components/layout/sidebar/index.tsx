@@ -1,5 +1,5 @@
 'use client';
-import { CreateUserModal } from '@/components/modals/createOrEditUserModal';
+import { CreateOrEditUserModal } from '@/components/modals/createOrEditUserModal';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { FaUsers } from 'react-icons/fa';
@@ -28,7 +28,7 @@ export const Sidebar = () => {
 
       {/* Modal */}
       {modalCreateUser && (
-        <CreateUserModal onClose={() => setModalCreateUser(false)} />
+        <CreateOrEditUserModal onClose={() => setModalCreateUser(false)} />
       )}
     </div>
   );

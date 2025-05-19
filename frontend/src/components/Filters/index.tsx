@@ -82,7 +82,7 @@ export const Filters = ({
       <div className='flex flex-row justify-end mt-5 gap-3'>
         <Button
           onClick={() => {
-            fetchUsersAgain(setUsers), resetFilter();
+            console.log('Resetado');
           }}
           className='bg-zinc-300 text-black hover:cursor-pointer hover:bg-zinc-400'
         >

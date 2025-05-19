@@ -3,7 +3,7 @@ import { FaTrash } from 'react-icons/fa';
 import { Icon } from './icon';
 import { FaPencil } from 'react-icons/fa6';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { CreateUserModal } from '@/components/modals/createOrEditUserModal';
+import { CreateOrEditUserModal } from '@/components/modals/createOrEditUserModal';
 import { DeleteUserModal } from '@/components/modals/deleteUserModal';
 import { fetchUsersAgain } from '@/shared/functions/fetchUsers';
 
@@ -17,11 +17,6 @@ export const Actions = ({ user, setUsers }: ActionsProps) => {
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   return (
     <div className='flex flex-row justify-end items-center gap-4'>
-      {/* <Icon
-        classname='bg-blue-200 hover:bg-blue-300'
-        execute={() => console.log()}
-        icon={<FaEye className='text-blue-600 hover:text-blue-700' />}
-      /> */}
       <Icon
         classname='bg-green-200 hover:bg-green-300'
         execute={() => {
@@ -36,10 +31,9 @@ export const Actions = ({ user, setUsers }: ActionsProps) => {
       />
 
       {openEditModalUser && (
-        <CreateUserModal
+        <CreateOrEditUserModal
           userToEdit={user}
           onClose={() => setOpenEditModalUser(false)}
-          onSuccess={() => fetchUsersAgain(setUsers)}
         />
       )}
 
