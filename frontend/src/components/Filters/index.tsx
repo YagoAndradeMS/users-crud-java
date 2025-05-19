@@ -1,14 +1,26 @@
+// Importa ícones da biblioteca FontAwesome
 import {
   faCaretDown,
   faUser,
   faVoicemail,
 } from '@fortawesome/free-solid-svg-icons';
+
+// Importa o componente de Input customizado
 import { Input } from './input';
+
+// Importa o componente de botão customizado
 import { Button } from '../ui/button';
+
+// Tipos para controle de estado com React
 import { Dispatch, SetStateAction } from 'react';
+
+// Função para buscar usuários novamente (não está sendo usada aqui)
 import { fetchUsersAgain } from '@/shared/functions/fetchUsers';
+
+// Tipo de usuário usado na aplicação
 import { User } from '@/shared/types/User';
 
+// Interface que define as props esperadas pelo componente Filters
 interface FiltersProps {
   setFilterName: Dispatch<SetStateAction<string>>;
   setFilterEmail: Dispatch<SetStateAction<string>>;
@@ -17,9 +29,10 @@ interface FiltersProps {
   filterName: string;
   filterEmail: string;
   filterUserId: string;
-  allUsers: User[];
+  allUsers: User[]; // Lista completa de usuários
 }
 
+// Componente responsável pelos filtros de busca
 export const Filters = ({
   filterEmail,
   filterName,
@@ -30,6 +43,7 @@ export const Filters = ({
   setUsers,
   allUsers,
 }: FiltersProps) => {
+  // Função que reseta os filtros e restaura a lista original de usuários
   const resetFilter = () => {
     setFilterName('');
     setFilterEmail('');
@@ -37,24 +51,36 @@ export const Filters = ({
     setUsers(allUsers);
   };
 
+  // Função que aplica os filtros preenchidos aos dados dos usuários
   const applyFilters = () => {
     const filtered = allUsers.filter(user => {
+      // Verifica se o nome do usuário inclui o texto filtrado
       const matchName = user.nome
         ?.toLowerCase()
         .includes(filterName.toLowerCase());
+
+      // Verifica se o email do usuário inclui o texto filtrado
       const matchEmail = user.email
         ?.toLowerCase()
         .includes(filterEmail.toLowerCase());
+
+      // Verifica se o ID do usuário inclui o texto filtrado
       const matchId = user.id?.toString().includes(filterUserId);
+
+      // Retorna apenas os usuários que correspondem a todos os filtros
       return matchName && matchEmail && matchId;
     });
 
+    // Atualiza a lista de usuários exibida
     setUsers(filtered);
   };
 
   return (
     <div>
+      {/* Título da seção de filtros */}
       <h1 className='text-xl font-bold'>Busca e Filtros</h1>
+
+      {/* Inputs de filtro: nome, email e ID */}
       <div className='flex flex-col md:flex-row justify-between items-center mt-4 gap-5'>
         <Input
           filterValue={filterName}
@@ -79,6 +105,7 @@ export const Filters = ({
         />
       </div>
 
+      {/* Botões de ação: resetar filtros ou aplicar filtros */}
       <div className='flex flex-row justify-end mt-5 gap-3'>
         <Button
           onClick={() => {

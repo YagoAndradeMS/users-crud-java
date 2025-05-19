@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
-
 import { cn } from '@/lib/utils';
 
+// Container responsivo para a tabela, com overflow horizontal
 function Table({ className, ...props }: React.ComponentProps<'table'>) {
   return (
     <div
@@ -19,6 +19,7 @@ function Table({ className, ...props }: React.ComponentProps<'table'>) {
   );
 }
 
+// Cabeçalho da tabela (<thead>)
 function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
   return (
     <thead
@@ -29,6 +30,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
   );
 }
 
+// Corpo da tabela (<tbody>)
 function TableBody({ className, ...props }: React.ComponentProps<'tbody'>) {
   return (
     <tbody
@@ -39,6 +41,7 @@ function TableBody({ className, ...props }: React.ComponentProps<'tbody'>) {
   );
 }
 
+// Rodapé da tabela (<tfoot>)
 function TableFooter({ className, ...props }: React.ComponentProps<'tfoot'>) {
   return (
     <tfoot
@@ -52,6 +55,7 @@ function TableFooter({ className, ...props }: React.ComponentProps<'tfoot'>) {
   );
 }
 
+// Linha da tabela (<tr>)
 function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
   return (
     <tr
@@ -65,12 +69,13 @@ function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
   );
 }
 
+// Cabeçalho da célula (<th>)
 function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
   return (
     <th
       data-slot='table-head'
       className={cn(
-        'text-zinc-600  h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
+        'text-zinc-600 h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
         className
       )}
       {...props}
@@ -78,6 +83,7 @@ function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
   );
 }
 
+// Célula da tabela (<td>)
 function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
   return (
     <td
@@ -91,6 +97,7 @@ function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
   );
 }
 
+// Legenda da tabela (<caption>)
 function TableCaption({
   className,
   ...props
