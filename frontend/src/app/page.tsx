@@ -13,15 +13,15 @@ export default function HomePage() {
   const [filterEmail, setFilterEmail] = useState('');
   const [filterUserId, setFilterUserId] = useState('');
 
-  useEffect(() => {
-    api
-      .get('/users')
-      .then(response => {
-        setAllUsers(response.data);
-        setUsers(response.data);
-      })
-      .catch(err => console.error('Erro ao buscar usuários:', err));
-  }, []);
+  // useEffect(() => {
+  //   api
+  //     .get('/users')
+  //     .then(response => {
+  //       setAllUsers(response.data);
+  //       setUsers(response.data);
+  //     })
+  //     .catch(err => console.error('Erro ao buscar usuários:', err));
+  // }, []);
 
   return (
     <main className='p-8'>
